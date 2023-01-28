@@ -24,26 +24,25 @@ public class Greep extends Creature {
     protected void behave() {
         if (isCarryingTomato()) {
             if (isStuck()) {
-                turnRandomDegrees(17,230);
+                turnRandomly(36,250,3);
                 move();
-                move();
-            } else if (isAtShip()) {
+            } else  if (isAtShip()) {
                 dropTomato();
             } else {
                 turnTowardsHome();
             }
         }
         if (isStuck())  {
-            turnRandomly(0,360,3);
+            turnRandomly(36,200,3);
+            seekTomatoPile();
         } else {
             seekTomatoPile();
         }
-
-
         if (!canMove()) {
-        } else {
             seekTomatoPile();
+            turnRandomly(0,360,10);
         }
+
         if (isAtTomatoes()) {
             waitForTomatoLoadingAssistance();
             checkFood();
