@@ -29,24 +29,24 @@ public class Greep extends Creature {
                 turnTowardsHome();
             }
         }
-        if (isStuck()) { {
-            turnRandomDegrees(179,180);
+        if (isStuck())  {
+            turnRandomly(0,360,3);
+        } else {
+            seekTomatoPile();
         }
 
-        }
+
         if (!canMove()) {
-            turnRandomly(0,360,3);
         } else {
             seekTomatoPile();
         }
         if (isAtTomatoes()) {
             waitForTomatoLoadingAssistance();
+            checkFood();
         }
-
-
     }
     public Boolean isStuck() {
-        if (isAtWater() || isAtEdge()) {
+        if (isAtWater() || isAtEdge() || !canMove()) {
             return true;
         }
         return false;
