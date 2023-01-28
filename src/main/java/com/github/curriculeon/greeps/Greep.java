@@ -22,27 +22,15 @@ public class Greep extends Creature {
 
     @Override
     protected void behave() {
-        if (isCarryingTomato()) {
-            if(isStuck()) {
-                tryToGetUnstuck();
-            } else  if (isAtShip()) {
-                dropTomato();
-            } else {
-                turnTowardsHome();
-            }
-        }
+        bringTomatoesBack();
         tryToGetUnstuck();
-
         seekTomatoPile();
-
         if (isAtTomatoes()) {
             waitForTomatoLoadingAssistance();
             checkFood();
         } else if (isWaitingToAssist()) {
             turnTowards(this);
-
         }
-
     }
     public Boolean isStuck() {
         if (isAtWater() || isAtEdge() || !canMove()) {
@@ -54,6 +42,17 @@ public class Greep extends Creature {
     public void tryToGetUnstuck() {
         if (isStuck()) {
             turnRandomDegrees(17, 230);
+        }
+    }
+    public void bringTomatoesBack() {
+        if (isCarryingTomato()) {
+            if(isStuck()) {
+                tryToGetUnstuck();
+            } else  if (isAtShip()) {
+                dropTomato();
+            } else {
+                turnTowardsHome();
+            }
         }
     }
 
