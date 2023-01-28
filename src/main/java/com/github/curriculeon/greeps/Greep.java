@@ -29,7 +29,16 @@ public class Greep extends Creature {
                 turnTowardsHome();
             }
         }
-        move();
+        if (!canMove()) {
+            turnRandomly(0,360,3);
+        } else {
+            seekTomatoPile();
+        }
+        if (isAtTomatoes()) {
+            waitForTomatoLoadingAssistance();
+        }
+
+
     }
 
     private Boolean isToLeft(Actor actor) {
@@ -55,12 +64,12 @@ public class Greep extends Creature {
     }
 
     public Boolean isWaitingForAssistance() {
-        return super.isAtTomatoes() && !super.isCarryingTomato();
+        return isAtTomatoes() && !super.isCarryingTomato();
     }
 
 
     public Boolean isWaitingToAssist() {
-        if (super.isAtTomatoes()) {
+        if (isAtTomatoes()) {
             for (Greep greep : getSurroundingTomatoPile().getIntersectingObjects(Greep.class)) {
                 if (!greep.isCarryingTomato()) {
                     return true;
