@@ -29,6 +29,11 @@ public class Greep extends Creature {
                 turnTowardsHome();
             }
         }
+        if (isStuck()) { {
+            turnRandomDegrees(179,180);
+        }
+
+        }
         if (!canMove()) {
             turnRandomly(0,360,3);
         } else {
@@ -40,6 +45,13 @@ public class Greep extends Creature {
 
 
     }
+    public Boolean isStuck() {
+        if (isAtWater() || isAtEdge()) {
+            return true;
+        }
+        return false;
+    }
+
 
     private Boolean isToLeft(Actor actor) {
         int currentRotation = getRotation();
