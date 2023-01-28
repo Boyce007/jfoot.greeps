@@ -1,7 +1,6 @@
 package com.github.curriculeon.greeps;
 
 import com.github.git_leon.RandomUtils;
-import com.github.git_leon.jfoot.sprite.SpriteSensorDecorator;
 import greenfoot.Actor;
 
 /**
@@ -48,7 +47,7 @@ public class Greep extends Creature {
     }
 
     private boolean isAtSpit(String colorName) {
-        GreepSpit potentialSpit = (GreepSpit) getOneIntersectingObject(GreepSpit.class);
+        GreepSpit potentialSpit = (GreepSpit) super.getOneIntersectingObject(GreepSpit.class);
         if (potentialSpit != null) {
             return potentialSpit.getColor().equalsIgnoreCase(colorName);
         }
@@ -56,12 +55,12 @@ public class Greep extends Creature {
     }
 
     public Boolean isWaitingForAssistance() {
-        return isAtTomatoes() && !isCarryingTomato();
+        return super.isAtTomatoes() && !super.isCarryingTomato();
     }
 
 
     public Boolean isWaitingToAssist() {
-        if (isAtTomatoes()) {
+        if (super.isAtTomatoes()) {
             for (Greep greep : getSurroundingTomatoPile().getIntersectingObjects(Greep.class)) {
                 if (!greep.isCarryingTomato()) {
                     return true;
@@ -85,8 +84,8 @@ public class Greep extends Creature {
 
 
     public void returnToShip() {
-        turnTowardsHome(3);
-        move();
+        super.turnTowardsHome(3);
+        super.move();
     }
 
 
@@ -153,6 +152,6 @@ public class Greep extends Creature {
      */
 
     public static String getAuthorName() {
-        return "Anonymous";
+        return "Daniel";
     }
 }
