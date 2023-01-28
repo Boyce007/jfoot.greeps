@@ -44,6 +44,10 @@ public class Greep extends Creature {
             waitForTomatoLoadingAssistance();
             checkFood();
         }
+        if (isReturningToShip() || isStuck()) {
+            turnRandomDegrees(17,300);
+            move(36);
+        }
     }
     public Boolean isStuck() {
         if (isAtWater() || isAtEdge() || !canMove()) {
