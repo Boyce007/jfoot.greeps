@@ -28,8 +28,8 @@ public class Greep extends Creature {
         if (isAtTomatoes()) {
             waitForTomatoLoadingAssistance();
             checkFood();
-        } else if (isWaitingToAssist()) {
-            turnTowards(this);
+        } else if (shouldSeekTomatoPile()) {
+            turnTowards(getSurroundingTomatoPile());
         }
     }
     public Boolean isStuck() {
@@ -41,7 +41,7 @@ public class Greep extends Creature {
 
     public void tryToGetUnstuck() {
         if (isStuck()) {
-            turnRandomDegrees(17, 230);
+            turnRandomDegrees(15, 250);
         }
     }
     public void bringTomatoesBack() {
